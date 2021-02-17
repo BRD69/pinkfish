@@ -1,0 +1,40 @@
+{% extends 'MainApp/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="main-content col-9">
+        <ul class="list-group">
+            <li class="list-group-item active" aria-current="true">Бойцы</li>
+            <li class="list-group-item">
+                <form action="{% url "index:fighters" %}" id="select-wc">
+                    <select class="form-select" name="weight_category" onchange="select_weight_categories()" aria-label="Default select example">
+                        <option selected>{{ selected_wc }}</option>
+                        <option value="0">Все бойцы</option>
+                        {% for wc in weight_categories %}
+                        <option value="{{ wc.pk }}">{{ wc }}</option>
+                        {% endfor %}
+                    </select>
+                </form>
+            </li>
+        </ul>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            {% for fighter in fighters %}
+            <div class="col">
+                <a href="{% url "index:fighter" fighter.f.pk %}" style="text-decoration: none;">
+                    <div class="card h-100">
+                        <img src="{{ media_url }}{{ fighter.f.photo }}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h4 class="card-title">{{ fighter.f.get_first_last_name }}</h4>
+                            <h5 class="card-title">{{ fighter.f.nickname }}</h5>
+                            <h6>Рост: {{ fighter.f.height }}</h6>
+                            <h6>Вес: {{ fighter.f.weight }}</h6>
+                            <span class="badge bg-success">{{ fighter.static.victory }}</span>
+                            <span class="badge bg-danger">{{ fighter.static.losing }}</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,55 @@
+{% extends 'MyAdminApp/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container  d-flex h-100">
+        <div class="row justify-content-center align-self-center">
+            <div class="col"></div>
+            <div class="col">
+                <p class="h4">Новый пользователь</p>
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row mb-3">
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-text">Имя пользователя</span>
+                            {{ form_user.username }}
+                        </div>
+                    </div>
+                    {% if create %}
+                    <div class="row mb-3">
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-text">Пароль</span>
+                            {{ form_user.password1 }}
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-text">Повтор пароля</span>
+                            {{ form_user.password2 }}
+                        </div>
+                    </div>
+                    {% endif %}
+                    <div class="row mb-3">
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-text">Email</span>
+                            {{ form_user.email }}
+                        </div>
+                    </div>
+                    <div class="mb-3 form-check form-check-inline">
+                        {{ form_user.is_active }}
+                        <label class="form-check-label" for="inlineCheckbox1">Активный</label>
+                    </div>
+                    <div class="mb-3 form-check form-check-inline">
+                        {{ form_user.is_superuser }}
+                        <label class="form-check-label" for="inlineCheckbox2">Суперпользователь</label>
+                    </div>
+                    <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                        <button type="submit" class="btn btn-success" name="mainFormSave" value="Save">Сохранить</button>
+                        <button type="submit" class="btn btn-outline-success" name="mainFormSaveExit" value="SaveExit">Сохранить и выйти</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock content %}

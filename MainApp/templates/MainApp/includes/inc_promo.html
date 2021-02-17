@@ -1,0 +1,9 @@
+{% load static %}
+<div class="list-group">
+    <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
+        Промоушены
+    </a>
+    {% for promo in promotions %}
+        <a class="list-group-item list-group-item-action list-group-item-action-border" href="">{{ promo.name }}</a>
+    {% endfor %}
+</div>

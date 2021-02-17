@@ -1,0 +1,9 @@
+{% load static %}
+<div class="list-group padding-top-content">
+    <a href="https://music.yandex.ru/album/12160950" target="_blank" class="list-group-item list-group-item-action active" aria-current="true">
+        Подкасты
+    </a>
+    {% for pod in podcasts %}
+        <iframe frameborder="0" style="border:none;width:100%;height:70px;" width="100%" height="70" src="{{ pod.src }}">Слушайте <a href='{{ pod.href}}'>{{ pod.description}}</a> на Яндекс.Музыке</iframe>
+    {% endfor %}
+</div>

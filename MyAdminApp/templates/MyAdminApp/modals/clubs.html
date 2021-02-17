@@ -1,0 +1,28 @@
+{% load static %}
+
+<div class="modal fade" id="exampleModalClub" tabindex="-1" aria-labelledby="exampleModalLabelClub" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabelClub">Добавить клуб</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{% url 'myadmin:clubs_add' %}" method="post">
+                {% csrf_token %}
+                <div class="modal-body">
+                    <div class="input-group mb-3">
+                        {% for field in form_clubs %}
+                            {{ field }}
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal">Закрыть</button>
+                    <button type="submit" class="btn btn-outline-success btn-sm">Сохранить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

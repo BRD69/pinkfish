@@ -1,0 +1,10 @@
+{% load static %}
+<div class="list-group padding-top-content">
+
+    <a href="{% url "index:fighters" %}" class="list-group-item list-group-item-action active" aria-current="true">
+        Топ 5 бойцов
+    </a>
+    {% for fight in fighters_top_5 %}
+    <a class="list-group-item list-group-item-action list-group-item-action-border" href="{% url 'index:fighter' fight.pk %}">{{fight.get_first_last_name}}</a>
+    {% endfor %}
+</div>

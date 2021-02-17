@@ -1,0 +1,104 @@
+{% extends 'MainApp/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="main-content col-9">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h4 class="card-title card-color-text">{{ fighter }}</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <img src="{{ media_url }}{{ fighter.photo }}" class="card-img-top" alt="...">
+                </div>
+                <div class="col-8">
+                    <table class="table-light table-light-color">
+                        <tbody>
+                            <tr>
+                                <td>Страна:</td><td class="td-title">{{ fighter.country }}</td>
+                            </tr>
+                            <tr>
+                                <td>Дата рождения:</td><td class="td-title">{{ fighter.date_birth|date:"d.m.Y" }}</td>
+                            </tr>
+                            <tr>
+                                <td>Возраст:</td><td class="td-title">{{ fighter.get_age }} лет</td>
+                            </tr>
+                            <tr>
+                                <td>Рост:</td><td class="td-title">{{ fighter.height }} см</td>
+                            </tr>
+                            <tr>
+                                <td>Вес:</td><td class="td-title">{{ fighter.weight }} кг</td>
+                            </tr>
+                            <tr>
+                                <td>Весовая:</td><td class="td-title">{{ fighter.weight_category }}</td>
+                            </tr>
+                            <tr>
+                                <td>Размах Рук:</td><td class="td-title">{{ fighter.span_of_hands }} см</td>
+                            </tr>
+                            <tr>
+                                <td>Стойка:</td><td class="td-title">{{ fighter.get_rack }}</td>
+                            </tr>
+                            <tr>
+                                <td>Клуб:</td><td class="td-title">{{ fighter.team }}</td>
+                            </tr>
+                            <tr>
+                                <td>Базовый Спорт:</td><td class="td-title">{{ fighter.sports }}</td>
+                            </tr>
+                            <tr>
+                                <td>Участник:</td><td class="td-title">Top Dog, Битва за хайп, Punch Club, UFF</td>
+                            </tr>
+                            <tr>
+                                <td>Контракт:</td><td class="td-title"></td>
+                            </tr>
+                            <tr>
+                                <td>Упоминания:</td><td class="td-title"></td>
+                            </tr>
+                            <tr>
+                                <td>Побед:</td><td class="td-title">{{ static_fighter.victory }}</td>
+                            </tr>
+                            <tr>
+                                <td>Поражений:</td><td class="td-title">{{ static_fighter.losing }}</td>
+                            </tr>
+                            <tr>
+                                <td>Кулаки:</td><td class="td-title">3-0</td>
+                            </tr>
+                            <tr>
+                                <td>POP-MMA</td><td class="td-title">1-1</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <table class="table table-light-color">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Результат</th>
+                            <th scope="col">Соперник</th>
+                            <th scope="col">Дата</th>
+                            <th scope="col">Промо</th>
+                            <th scope="col">Видео</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for btl in battles %}
+                        <tr class="{% if btl.status %} color-win {% else %} color-defeat {% endif %}">
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td>{{ btl.result }}</td>
+                            <td>{{ btl.opponent }}</td>
+                            <td>{{ btl.date }}</td>
+                            <td>{{ btl.promotion }}</td>
+                            <td><a target="_blank" href="{{ btl.link }}">Смотреть</a></td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,88 @@
+{% extends 'MainApp/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="main-content col-9">
+        {% if video.link %}
+        <div class="video-container">
+            <iframe src="{{ video.link }}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        {% endif %}
+        <div class="list-group padding-top-content">
+            <a href="#" target="_blank" class="list-group-item list-group-item-action active" aria-current="true">
+                Новости
+            </a>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                <div class="col">
+                    <div class="card h-100 card-border-yandex">
+                        <img src="./img/news/yandex.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Новый подкаст</h5>
+                            <p class="card-text">ПЕРСИДСКИЙ ДАГЕСТАНЕЦ ХЕЙБАТИ порвал МАРИФА ПИРАЕВА и ЧОРШАНБЕ, а ПЕЛЬМЕНЯ засудили?</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 card-border-youtube">
+                        <img src="./img/news/YouTube-icon.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Новое видео</h5>
+                            <p class="card-text">Хейбати ПЕРСИДСКИЙ ДАГЕСТАНЕЦ получил по лицу, причем и от бойцов Hardcore Fighting и от ребят из Нашего Дела.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 card-border-trashtalk">
+                        <img src="./img/news/trash-talk.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Новый бой</h5>
+                            <p class="card-text">Хейбати vs. Марифа Пираева
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 card-border-trashtalk">
+                        <img src="./img/news/trash-talk.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Название карточки</h5>
+                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 card-border-trashtalk">
+                        <img src="./img/news/trash-talk.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Название карточки</h5>
+                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-100 card-border-youtube">
+                        <img src="./img/news/YouTube-icon.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Название карточки</h5>
+                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="list-group padding-top-content">
+            <a href="#" target="_blank" class="list-group-item list-group-item-action active" aria-current="true">
+                Какой то контент
+            </a>
+            <div class="card">
+                <div class="card-header">
+                    Featured
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Название чего то</h5>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <a href="#" class="btn btn-primary">Кнопку можно убрать</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

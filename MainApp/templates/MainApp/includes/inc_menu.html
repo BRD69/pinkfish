@@ -1,0 +1,65 @@
+{% load static %}
+<div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-navbar-main-style">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'index:main' %}"><img src="/static/img/logo.png" height="30" class="d-inline-block align-top" alt="" loading="lazy"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="{% url 'index:about' %}">О&nbsp;нас</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'index:news' %}">Новости</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                            Бойцы
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{% url "index:fighters" %}">Все бойцы</a></li>
+                            {% for wc in weight_categories %}
+                                <li><a class="dropdown-item" href="{% url "index:fighters_pk" wc.pk %}">{{ wc.name }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                            Промоушены
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            {% for promo in promotions %}
+                                <li><a class="dropdown-item" href="#">{{ promo.name }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                            Турниры
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            {% for promo in promotions %}
+                                <li><a class="dropdown-item" href="#">{{ promo.name }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                            Подкасты
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" target="_blank" href="https://www.youtube.com/channel/UCDinDcqVrJ9A381Ug4O6diw">Видео</a></li>
+                            <li><a class="dropdown-item" target="_blank" href="https://music.yandex.ru/album/12160950">Аудио</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="d-flex" action="{% url "index:fighters" %}">
+                    <input class="form-control mr-2" type="search" name="search" placeholder="Поиск бойца" aria-label="Search">
+                    <button type="submit" class="btn btn-dark">Поиск</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+</div>

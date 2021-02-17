@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}
+        {{ title|capfirst }}
+        {% endblock title %}
+    </title>
+
+    {% block css %}
+        <link rel="stylesheet" href="/static/css/bootstrap.css">
+        <link rel="stylesheet" href="/static/css/style-admin.css">
+    {% endblock css %}
+
+    {% block js %}
+        <script src="/static/js/bootstrap.js"></script>
+        <script src="/static/js/admin-index.js"></script>
+    {% endblock js %}
+
+    {% block style %}
+        <style>
+            @font-face {
+                font-family: Montserrat; /* Имя шрифта */
+                src: url("/static/fonts/Montserrat-Medium.ttf"); /* Путь к файлу со шрифтом */
+            }
+        </style>
+    {% endblock style %}
+</head>
+<body>
+    <header>
+        {% include 'MyAdminApp/includes/inc_menu.html' %}
+    </header>
+    <main>
+        {% block content %}
+        {% endblock content%}
+    </main>
+    <!-- Modal -->
+    <!-- Banner -->
+    {% include 'MyAdminApp/modals/banners.html' %}
+    <!-- Podcast -->
+    {% include 'MyAdminApp/modals/podcast.html' %}
+    <!-- Battle -->
+    {% include 'MyAdminApp/modals/battle.html' %}
+    <!-- Weight category -->
+    {% include 'MyAdminApp/modals/weight_category.html' %}
+    <!-- Clubs -->
+    {% include 'MyAdminApp/modals/clubs.html' %}
+    <!-- Sports -->
+    {% include 'MyAdminApp/modals/sports.html' %}
+    <!-- Promo -->
+    {% include 'MyAdminApp/modals/promo.html' %}
+</body>
+</html>

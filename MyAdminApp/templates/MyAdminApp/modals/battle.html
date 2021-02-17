@@ -1,0 +1,50 @@
+{% load static %}
+
+<div class="modal fade" id="exampleModalBattle" tabindex="-1" aria-labelledby="exampleModalLabelBattle" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabelBattle">Добавить бой</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{% url "myadmin:battle_add" %}" method="post">
+                {% csrf_token %}
+                <div class="modal-body">
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text">Боец 1</span>
+                        {{ form_battle.fighter1 }}
+                    </div>
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text">Боец 2</span>
+                        {{ form_battle.fighter2 }}
+                    </div>
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="basic-addon4">Победитель боец №</span>
+                        <select class="form-select form-select-sm" name="winner" aria-label=".form-select-sm example">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                        </select>
+                    </div>
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="basic-addon4">Дата боя</span>
+                        {{ form_battle.date }}
+                    </div>
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="basic-addon4">Промоушен</span>
+                        {{ form_battle.promotion }}
+                    </div>
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="basic-addon3">https://youtu.be/</span>
+                        {{ form_battle.link }}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal">Закрыть</button>
+                    <button type="submit" class="btn btn-outline-success btn-sm">Сохранить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

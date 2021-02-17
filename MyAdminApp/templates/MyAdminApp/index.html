@@ -1,0 +1,196 @@
+{% extends 'MyAdminApp/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-4">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="form-check">
+                                <form action="{% url "myadmin:banners_is_active" %}" id="save-status-banner">
+                                    <input class="form-check-input" type="checkbox" name="status_banner" value="{{ banners_is_active }}" onclick="submit_status_banner()" {% if banners_is_active %} checked {% endif %}>
+                                </form>
+                              <label class="form-check-label" for="flexCheck">Показывать баннеры на главной</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <nav class="navbar navbar-expand-lg navbar-light navbar-bg-color">
+                        <div class="container-fluid">
+                            <span class="navbar-brand mb-0 h1">Баннеры</span>
+                            <div class="collapse navbar-collapse">
+                                <ul class="nav nav-pills mr-auto mb-2 mb-lg-0">
+                                    <li class="nav-item nav-item-margin-right">
+                                        <button type="button" data-toggle="modal" data-target="#exampleModalBanner" class="btn btn-success btn-sm">Добавить</button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                    <table class="table table-striped table-sm table-hover">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Картинка</th>
+                            <th scope="col">Дата</th>
+                            <th scope="col">Активен</th>
+                        </tr>
+                        </thead>
+                        <tbody class="">
+                        {% for ban in banners %}
+                            <tr>
+                                <th scope="row">{{ forloop.counter }}</th>
+                                <td><a href="{% url 'myadmin:image' ban.pk %}">Баннер {{ ban.pk }}</a></td>
+                                <td>{{ ban.date_create|date:"d.m.Y" }}</td>
+                                <td>
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckCheckedDisabled" {% if ban.is_active %}checked{% endif %} disabled>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+               </div>
+                <div class="container">
+                    <form action="{% url "myadmin:video_save" %}" method="post">
+                        {% csrf_token %}
+                        <nav class="navbar navbar-expand-lg navbar-light navbar-bg-color">
+                            <div class="container-fluid">
+                                <span class="navbar-brand mb-0 h1">Главное видео</span>
+                                <div class="collapse navbar-collapse">
+                                    <ul class="nav nav-pills mr-auto mb-2 mb-lg-0">
+                                        <li class="nav-item nav-item-margin-right">
+                                            <button type="submit" class="btn btn-outline-success btn-sm">Сохранить</button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
+                        <div class="mb-3">
+                            {{ form_video.link }}
+                        </div>
+                    </form>
+                </div>
+                <div class="container">
+                    <nav class="navbar navbar-expand-lg navbar-light navbar-bg-color">
+                        <div class="container-fluid">
+                            <span class="navbar-brand mb-0 h1">Подкасты</span>
+                            <div class="collapse navbar-collapse">
+                                <ul class="nav nav-pills mr-auto mb-2 mb-lg-0">
+                                    <li class="nav-item nav-item-margin-right">
+                                        <button type="button" data-toggle="modal" data-target="#exampleModalPodcast" class="btn btn-success btn-sm">Добавить</button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                    <table class="table table-striped table-sm table-hover">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Дата</th>
+                            <th scope="col">Ссылка</th>
+                        </tr>
+                        </thead>
+                        <tbody class="">
+                        {% for pod in podcasts %}
+                            <tr>
+                                <th scope="row">{{ forloop.counter }}</th>
+                                <td>{{ pod.date_podcast|date:"d.m.Y" }}</td>
+                                <td><a href="{{ pod.href }}" target="_blank">{{ pod.name }}</a></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="container">
+                    <nav class="navbar navbar-expand-lg navbar-light navbar-bg-color">
+                        <div class="container-fluid">
+                            <span class="navbar-brand mb-0 h1">Бои</span>
+                            <div class="collapse navbar-collapse">
+                                <ul class="nav nav-pills mr-auto mb-2 mb-lg-0">
+                                    <li class="nav-item nav-item-margin-right">
+                                        <button type="button" data-toggle="modal" data-target="#exampleModalBattle" class="btn btn-success btn-sm">Добавить</button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                    <table class="table table-striped table-sm table-hover">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Боец 1</th>
+                            <th scope="col">Боец 2</th>
+                            <th scope="col">Дата</th>
+                            <th scope="col">Промоушен</th>
+                            <th scope="col">Видео</th>
+                        </tr>
+                        </thead>
+                        <tbody class="">
+                        {% for btl in battles %}
+                        <tr>
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td class="{% if btl.fighter1 == btl.winner %}table-success{% else %}table-danger{% endif %}">{{ btl.fighter1 }}</td>
+                            <td class="{% if btl.fighter2 == btl.winner %}table-success{% else %}table-danger{% endif %}">{{ btl.fighter2 }}</td>
+                            <td>{{ btl.date|date:"d.m.Y"}}</td>
+                            <td>{{ btl.promotion}}</td>
+                            <td><a href="{{ btl.link}}">Ссылка</a></td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="container">
+                    <nav class="navbar navbar-expand-lg navbar-light navbar-bg-color">
+                        <div class="container-fluid">
+                            <span class="navbar-brand mb-0 h1">Новости</span>
+                            <div class="collapse navbar-collapse">
+                                <ul class="nav nav-pills mr-auto mb-2 mb-lg-0">
+                                    <li class="nav-item nav-item-margin-right">
+                                        <button type="button" data-toggle="modal" data-target="#" class="btn btn-success btn-sm">Добавить</button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                    <table class="table table-striped table-sm table-hover">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Дата</th>
+                            <th scope="col">Заголовок</th>
+                        </tr>
+                        </thead>
+                        <tbody class="">
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>10.01.2021</td>
+                            <td><a href="admin-fighter.html">Хейбати vs. Марифа Пираева</a></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>10.01.2021</td>
+                            <td><a href="admin-fighter.html">Новое видео</a></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>10.01.2021</td>
+                            <td><a href="admin-fighter.html">Хейбати vs. Марифа Пираева</a></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">4</th>
+                            <td>10.01.2021</td>
+                            <td><a href="admin-fighter.html">Новое видео</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

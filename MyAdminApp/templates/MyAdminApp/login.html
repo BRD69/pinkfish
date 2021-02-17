@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}
+        {{ title|capfirst }}
+        {% endblock title %}
+    </title>
+
+    {% block css %}
+        <link rel="stylesheet" href="/static/css/bootstrap.css">
+        <link rel="stylesheet" href="/static/css/style-admin-login.css">
+    {% endblock css %}
+
+    {% block js %}
+        <script src="/static/js/bootstrap.js"></script>
+    {% endblock js %}
+
+    {% block style %}
+        <style>
+            @font-face {
+                font-family: Montserrat; /* Имя шрифта */
+                src: url("/static/fonts/Montserrat-Medium.ttf"); /* Путь к файлу со шрифтом */
+            }
+        </style>
+    {% endblock style %}
+</head>
+<body>
+    <div class="container d-flex h-100">
+        <div class="row justify-content-center align-self-center">
+            <div class="col"></div>
+            <div class="col">
+                <form action="{% url "myadmin:login" %}" method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="exampleInputUsername" class="form-label">Логин</label>
+                        {{ login_form.username }}
+                        <div id="usernameHelp" class="form-text">Логин вам выдает администратор сайта</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Пароль</label>
+                        {{ login_form.password }}
+                        <div class="form-text"><a href="">Забыли пароль?</a></div>
+                    </div>
+                    <button type="submit" class="btn btn-dark btn-block">Войти</button>
+                </form>
+            </div>
+            <div class="col"></div>
+        </div>
+    </div>
+</body>
+</html>

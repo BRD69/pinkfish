@@ -1,0 +1,119 @@
+{% extends 'MyAdminApp/base.html' %}
+{% load static %}
+
+{% block content %}
+        <div class="container">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-4">
+                        {% if fighter.photo %}
+                            <img src="{{ media_url }}{{ fighter.photo }}" class="card-img-top" alt="" style="width: 30%;">
+                        {% else %}
+                            <img src="/media/photo_fighters/no-avatar.jpg" class="card-img-top" alt="" style="width: 30%;">
+                        {% endif %}
+                    </div>
+                    <div class="col-8">
+                        <div class="row mb-2">
+                            <div class="input-group">
+                                <span class="input-group-text">Фамилия</span>
+                                {{ form_fighter.last_name }}
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="input-group">
+                                <span class="input-group-text">Имя</span>
+                                {{ form_fighter.first_name }}
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="input-group">
+                                <span class="input-group-text">Прозвище</span>
+                                {{ form_fighter.nickname }}
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="input-group">
+                                <span class="input-group-text">Фото</span>
+                                <div class="form-file">
+                                    {{ form_fighter.photo }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-text">Инстаграм</span>
+                        {{ form_fighter.instagram }}
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-text">Страна</span>
+                        {{ form_fighter.country }}
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="input-group input-group-sm">
+                      <span class="input-group-text">Дата рождения | Возраст</span>
+                      {{ form_fighter.date_birth }}
+                      {{ form_fighter.age }}
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-text">Рост, см | Вес, кг</span>
+                        {{ form_fighter.height }}
+                        {{ form_fighter.weight }}
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-text">Весовая</span>
+                        {{ form_fighter.weight_category }}
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-text">Размах рук, см</span>
+                        {{ form_fighter.span_of_hands }}
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-text">Стойка</span>
+                        {{ form_fighter.rack }}
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-text">Команда</span>
+                        {{ form_fighter.team }}
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-text">Базовый спорт</span>
+                        {{ form_fighter.sports }}
+                    </div>
+                </div>
+                <div class="row mb-3" style="display: none">
+                     <div class="input-group input-group-sm">
+                        <span class="input-group-text">Участник</span>
+                        <input type="text" class="form-control form-control-sm" id="inputParticipant">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-text">Контракт</span>
+                        {{ form_fighter.contract }}
+                    </div>
+                </div>
+                <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                  <button type="submit" class="btn btn-success" name="mainFormSave" value="Save">Сохранить</button>
+                  <button type="submit" class="btn btn-outline-success" name="mainFormSaveExit" value="SaveExit">Сохранить и выйти</button>
+                </div>
+            </form>
+        </div>
+{% endblock content %}

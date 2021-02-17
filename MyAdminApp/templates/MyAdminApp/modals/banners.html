@@ -1,0 +1,32 @@
+{% load static %}
+
+<div class="modal fade" id="exampleModalBanner" tabindex="-1" aria-labelledby="exampleModalBanner" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalBanner">Добавить баннер</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{% url 'myadmin:banner_add' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="modal-body">
+                    <div class="input-group mb-3">
+                        {{ form_banners.image }}
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="form-check">
+                            {{ form_banners.is_active }}
+                            <label class="form-check-label" for="defaultCheck1">Активен</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal">Закрыть</button>
+                    <button type="submit" class="btn btn-outline-success btn-sm">Сохранить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

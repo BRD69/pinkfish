@@ -1,0 +1,147 @@
+{% extends 'MyAdminApp/base.html' %}
+{% load static %}
+
+{% block content %}
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm">
+                    <div class="container">
+                        <nav class="navbar navbar-expand-lg navbar-light navbar-bg-color">
+                            <div class="container-fluid">
+                                <span class="navbar-brand mb-0 h1">Весовая категория</span>
+                                <div class="collapse navbar-collapse">
+                                    <ul class="nav nav-pills mr-auto mb-2 mb-lg-0">
+                                        <li class="nav-item nav-item-margin-right">
+                                            <button type="button" data-toggle="modal" data-target="#exampleModalWeightCategory" class="btn btn-success btn-sm">Добавить</button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
+                        <table class="table table-striped table-sm table-hover">
+                            <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Название</th>
+                                <th scope="col">вес от кг.</th>
+                                <th scope="col">вес до кг.</th>
+                            </tr>
+                            </thead>
+                            <tbody class="">
+                                {% for wc in weight_categories %}
+                                    <tr>
+                                        <th scope="row">{{ forloop.counter }}</th>
+                                        <td>{{ wc.name }}</td>
+                                        <td>{{ wc.weight_from }}</td>
+                                        <td>{{ wc.weight_up_to }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div class="container">
+                        <nav class="navbar navbar-expand-lg navbar-light navbar-bg-color">
+                            <div class="container-fluid">
+                                <span class="navbar-brand mb-0 h1">Клуб</span>
+                                <div class="collapse navbar-collapse">
+                                    <ul class="nav nav-pills mr-auto mb-2 mb-lg-0">
+                                        <li class="nav-item nav-item-margin-right">
+                                            <button type="button" data-toggle="modal" data-target="#exampleModalClub" class="btn btn-success btn-sm">Добавить</button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
+                        <table class="table table-striped table-sm table-hover">
+                            <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Название</th>
+                                <th scope="col"></th>
+                            </tr>
+                            </thead>
+                            <tbody class="">
+                            {% for club in clubs %}
+                                <tr>
+                                    <th scope="row">{{ forloop.counter }}</th>
+                                    <td>{{ club.name }}</td>
+                                    <td></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div class="container">
+                        <nav class="navbar navbar-expand-lg navbar-light navbar-bg-color">
+                            <div class="container-fluid">
+                                <span class="navbar-brand mb-0 h1">Спорт</span>
+                                <div class="collapse navbar-collapse">
+                                    <ul class="nav nav-pills mr-auto mb-2 mb-lg-0">
+                                        <li class="nav-item nav-item-margin-right">
+                                            <button type="button" data-toggle="modal" data-target="#exampleModalSport" class="btn btn-success btn-sm">Добавить</button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
+                        <table class="table table-striped table-sm table-hover">
+                            <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Название</th>
+                            </tr>
+                            </thead>
+                            <tbody class="">
+                            {% for sport in sports %}
+                                <tr>
+                                    <th scope="row">{{ forloop.counter }}</th>
+                                    <td>{{ sport.name }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <div class="container">
+                        <nav class="navbar navbar-expand-lg navbar-light navbar-bg-color">
+                            <div class="container-fluid">
+                                <span class="navbar-brand mb-0 h1">Промоушены</span>
+                                <div class="collapse navbar-collapse">
+                                    <ul class="nav nav-pills mr-auto mb-2 mb-lg-0">
+                                        <li class="nav-item nav-item-margin-right">
+                                            <button type="button" data-toggle="modal" data-target="#exampleModalPromo" class="btn btn-success btn-sm">Добавить</button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
+                        <table class="table table-striped table-sm table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Название</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for promo in promotions %}
+                                <tr>
+                                    <th scope="row">{{ forloop.counter }}</th>
+                                    <td>{{ promo.name }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-sm"></div>
+                <div class="col-sm"></div>
+            </div>
+        </div>
+{% endblock content %}

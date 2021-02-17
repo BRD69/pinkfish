@@ -1,0 +1,36 @@
+{% load static %}
+
+<div class="modal fade" id="exampleModalWeightCategory" tabindex="-1" aria-labelledby="exampleModalLabelWeightCategory" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabelWeightCategory">Добавить весовую категорию</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{% url 'myadmin:clubs_add' %}" method="post">
+                {% csrf_token %}
+                <div class="modal-body">
+                    <div class="input-group mb-3">
+                        {{ form_weight_categories.name }}
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="row g-3">
+                            <div class="col">
+                                {{ form_weight_categories.weight_from }}
+                            </div>
+                            <div class="col">
+                                {{ form_weight_categories.weight_up_to }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal">Закрыть</button>
+                    <button type="button" class="btn btn-outline-success btn-sm">Сохранить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
